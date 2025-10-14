@@ -10,8 +10,9 @@ CATEGORY_MAP = {
     }
 
 def detect_category(filename):
+    ext = filename.path.suffix.lower
     for category, extensions in CATEGORY_MAP.items():
-        if filename.lower().endswith(tuple(extensions)):
+        if ext in extensions:
             return category
     return "other"
 
