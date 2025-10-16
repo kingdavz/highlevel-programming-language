@@ -9,14 +9,15 @@ import argparse
 def setup_logger(verbose = False):
     logging.basicConfig(
         level=logging.DEBUG if verbose else logging.INFO,
-        format="[%(levelname)s] %(message)s"
+        format="[%(levelname)s] %(message)s",
     )
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Organise files in a folder by type.")
+    parser = argparse.ArgumentParser(
+        description="Organise files in a folder by type.")
     parser.add_argument("target", 
-                        nargs="?", default="",
+                        nargs="?", default=".",
                         help="Target directory to organise")
     parser.add_argument("--dry-run",
                         action="store_true",
@@ -41,6 +42,7 @@ def organize(target_dir,dry_run = False, verbose = False):
     
 
     files = list_files(target_dir)
+    logging.info(f"Files to process: {len(files)}")
     for f in files:
         try:
             category = detect_category(f)

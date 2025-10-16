@@ -9,10 +9,10 @@ def ensure_dir(path):
 
 def move_file (src, dest):
     ensure_dir(dest)
-    des_path =dest / src.name
+    des_path = dest / src.name
 
     if des_path.exists():
-        stem, suffix = src.stem, src,suffix
+        stem, suffix = src.stem, src.suffix
         counter = 1
         while True:
             candidate = dest / f"{stem}_{counter}{suffix}"

@@ -10,15 +10,8 @@ CATEGORY_MAP = {
     }
 
 def detect_category(filename):
-    ext = filename.path.suffix.lower
+    ext = filename.suffix.lower()
     for category, extensions in CATEGORY_MAP.items():
         if ext in extensions:
             return category
     return "other"
-
-
-
-if __name__ =="__main__":
-    filename = input("Enter the filename: ")
-    category = detect_category(filename)
-    print(f"the category of {filename} is {category}")
