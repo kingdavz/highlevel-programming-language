@@ -4,12 +4,13 @@
 
 class Square:
 
-    def __init__(self, size = 0):
+    def __init__(self, size = 0, position = (0, 0)):
         """Initializes a new Square instance
            Args:
                 size (int): size of the square
         """
         self.size = size
+        self.position = position    
 
 
     @property
@@ -36,6 +37,22 @@ class Square:
         except Exception as e:
             print(e)
 
+    @property
+    def position(self):
+        """A getter method that retrieves position"""
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        """A setter method"""
+        try:
+            if not isinstance(value,tuple) and len(value) == 2:
+                raise TypeError("position must be a tuple of 2 positive integers")
+            else:
+                self.__position = value
+        except Exception as e:
+            print(e)
+
     def area(self):
         """A method that returns the area of the square"""
         return self.__size ** 2
@@ -45,13 +62,17 @@ class Square:
         if self.size == 0:
             print()
         else:
-            for _ in range(self.size):
-                print("#" * self.size)
+            if self.position[1] > 0:
+                     for _ in range(self.size,):
+                        print(" " * self.position[1], "#" * self.size)
+            else:
+                for _ in range(self.size):
+                    print( "#" * self.size)
             
     
 if __name__=="__main__":
     try:
-        square = Square(5)
+        square = Square(5, (2,2))
         square.my_print()
         print(square.area())
         print(square.size)
